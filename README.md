@@ -23,6 +23,10 @@
 - [Cấu trúc dự án](#-cấu-trúc-dự-án)
 - [Cài đặt Local](#-cài-đặt-local)
 - [Deploy lên Cloudflare Pages](#-deploy-lên-cloudflare-pages)
+  - [Phương pháp 1: Kết nối GitHub](#-phương-pháp-1-kết-nối-github-khuyến-nghị)
+  - [Cấu hình Compatibility Flags](#-cấu-hình-compatibility-flags-quan-trọng)
+  - [Phương pháp 2: Deploy với Wrangler CLI](#-phương-pháp-2-deploy-thủ-công-với-wrangler-cli)
+  - [Custom Domain](#-cấu-hình-custom-domain-tùy-chọn)
 - [Tích hợp Hệ thống Đại lý](#-tích-hợp-hệ-thống-đại-lý)
 - [Tùy chỉnh Website](#-tùy-chỉnh-website)
 - [Tech Stack](#-tech-stack)
@@ -210,6 +214,62 @@ Click **Add variable** và thêm các biến sau:
 3. Sau khi thành công, bạn sẽ nhận được URL như: `https://netproxy-index-v2.pages.dev`
 
 ✅ **Done!** Website của bạn đã online!
+
+---
+
+### ⚙️ Cấu hình Compatibility Flags (Quan trọng)
+
+> ⚠️ **Bắt buộc:** Dự án này sử dụng **Pages + Workers** nên cần cấu hình Compatibility Flags để Node.js APIs hoạt động đúng.
+
+#### Bước 1: Vào Settings của Project
+
+1. Trong Cloudflare Dashboard, vào project của bạn
+2. Click tab **Settings**
+3. Chọn **Functions** từ menu bên trái
+
+#### Bước 2: Thêm Compatibility Flags
+
+Tìm phần **Compatibility flags** và thêm:
+
+| Environment | Compatibility Flags |
+|-------------|---------------------|
+| **Production** | `nodejs_compat` |
+| **Preview** | `nodejs_compat` |
+
+#### Cách thêm:
+
+1. Trong phần **Production compatibility flags**, click **Add**
+2. Nhập: `nodejs_compat`
+3. Click **Save**
+4. Lặp lại cho **Preview compatibility flags**
+
+#### Hoặc sử dụng `wrangler.toml`:
+
+Tạo file `wrangler.toml` ở thư mục gốc:
+
+```toml
+name = "netproxy-index-v2"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+NEXT_PUBLIC_API_BASE_URL = "https://api.prx.network"
+```
+
+> 💡 **Tại sao cần `nodejs_compat`?**
+> - Next.js sử dụng một số Node.js APIs
+> - Cloudflare Workers mặc định không hỗ trợ đầy đủ Node.js APIs
+> - Flag `nodejs_compat` cho phép sử dụng các APIs như `Buffer`, `crypto`, `stream`, v.v.
+
+#### Bước 3: Re-deploy
+
+Sau khi thêm Compatibility Flags, bạn cần re-deploy:
+
+1. Vào tab **Deployments**
+2. Click **...** ở deployment mới nhất
+3. Chọn **Retry deployment**
+
+Hoặc push một commit mới để trigger auto-deploy.
 
 ---
 
