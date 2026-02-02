@@ -185,7 +185,7 @@ export const Pricing = () => {
                   </div>
 
                {plan.isPopular && (
-  <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 -translate-y-[30px] whitespace-nowrap">
+  <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 -translate-y-[10px] whitespace-nowrap">
     <ButtonLightEffect />
   </div>
 )}
