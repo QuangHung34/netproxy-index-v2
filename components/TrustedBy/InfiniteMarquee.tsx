@@ -23,6 +23,9 @@ type GsapMarqueeProps = {
   segmentGap?: number; // gap between *segment copies* (the seam)
   hoverTimeScale?: number; // timeScale while hovering an item
   pauseOnHoverTrack?: boolean;
+  // Thêm props mới
+  disableBlur?: boolean; // tắt blur hoàn toàn
+  itemScale?: number;    // scale logo to hơn (1.2 = to 20%)
 } & Omit<HTMLAttributes<HTMLDivElement>, "children">;
 
 export const GsapMarquee: FC<GsapMarqueeProps> = ({
@@ -34,6 +37,8 @@ export const GsapMarquee: FC<GsapMarqueeProps> = ({
   segmentGap, // NEW
   hoverTimeScale = 0.35,
   pauseOnHoverTrack = false,
+  disableBlur = true,   // mặc định tắt blur
+  itemScale = 1.3,      // mặc định to hơn 30%
   ...rest
 }) => {
   const segGap = segmentGap ?? gap; // default: same as item gap
@@ -113,8 +118,15 @@ export const GsapMarquee: FC<GsapMarqueeProps> = ({
         {React.Children.map(children, (child, idx) => (
           <div
             key={idx}
-            className="gm-item"
-            style={{ display: "inline-flex", alignItems: "center" }}
+            className={`gm-item 
+                       ${disableBlur ? 'filter-none' : ''}  // tắt blur
+                       hover:filter-none`}                  // hover cũng không blur
+            style={{ 
+              display: "inline-flex", 
+              alignItems: "center",
+              transform: `scale(${itemScale})`,  // logo to hơn
+              transformOrigin: "center center"
+            }}
             onMouseEnter={() => {
               if (!tlRef.current) return;
               gsap.to(tlRef.current, {
@@ -132,7 +144,7 @@ export const GsapMarquee: FC<GsapMarqueeProps> = ({
         ))}
       </div>
     );
-  }, [children, gap, hoverTimeScale]);
+  }, [children, gap, hoverTimeScale, disableBlur, itemScale]);
 
   // Render duplicates; add marginRight = segmentGap to each copy
   const segments = useMemo(() => {
