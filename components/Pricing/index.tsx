@@ -6,7 +6,6 @@ import { RefreshIcon } from "../icons/RefreshIcon";
 import { InfiniteIcon } from "../icons/InfiniteIcon";
 import { ThunderIcon } from "../icons/ThunderIcon";
 import { Separator } from "../ui/separator";
-import { ButtonLightEffect } from "../ButtonLightEffect";
 import { Link } from "@/i18n/routing";
 
 export const Pricing = () => {
@@ -138,7 +137,7 @@ export const Pricing = () => {
           <p className="text-13 text-primary text-center font-medium">
             {t("flashSale")}
           </p>
-          <h2 className="text-2xl min-[800px]:text-28 7xl:text-33 font-neue-kaine-bold  text-center text-[#2b303b]">
+          <h2 className="text-2xl min-[800px]:text-28 7xl:text-33 font-neue-kaine-bold text-center text-[#2b303b]">
             {t("title")}
           </h2>
           <div className="mt-5 font-inter text-15 max-w-600 mx-auto text-[#576075]">
@@ -150,7 +149,7 @@ export const Pricing = () => {
           {pricingPlans.map((plan, index) => (
             <div key={index} className="pricing-card h-full">
               <Link
-                href={"#"}
+                href="#"
                 className="card-item p-6 pt-8 flex gap-4 flex-col bg-[#fafcfc] border border-[#e5eaea] rounded-2xl relative h-full"
               >
                 <div
@@ -179,14 +178,33 @@ export const Pricing = () => {
                   ))}
                 </ul>
                 <Separator className="bg-[#e3ecec]" />
-                <div className="mt-auto pt-2 flex flex-col items-center">
+                <div className="mt-auto pt-2 flex flex-col items-center relative">
                   <div className="font-neue-kaine-bold text-40 text-primary text-center font-normal">
                     {plan.price}
                   </div>
 
                   {plan.isPopular && (
-                    <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                      <ButtonLightEffect />
+                    <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 mt-[30px]">
+                      <button className="relative flex items-center gap-2 px-4 py-2.5 rounded-full border border-[#F0C5A8] bg-[#FF781F] text-white font-semibold hover:opacity-90 transition-all duration-200 overflow-hidden">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="lucide lucide-star w-4 h-4 fill-current"
+                        >
+                          <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166 .756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                        </svg>
+                        <span className="text-xs font-ibm-plex-mono uppercase">
+                          <strong>Most Popular</strong>
+                        </span>
+                        <span className="absolute top-[-19px] bottom-[-18px] left-[-26px] w-[9px] bg-white mix-blend-overlay blur-[8px] rotate-[30deg] opacity-100 animate-shine"></span>
+                      </button>
                     </div>
                   )}
                 </div>
@@ -201,8 +219,8 @@ export const Pricing = () => {
             <Image
               src="/images/pricing/certificates.png"
               alt="Certificate"
-              width={376}
-              height={54}
+              width={500}
+              height={65}
             />
           </div>
           <div className="text-15 font-inter text-[#2b303b]">
