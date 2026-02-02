@@ -138,7 +138,7 @@ export const Pricing = () => {
           <p className="text-13 text-primary text-center font-medium">
             {t("flashSale")}
           </p>
-          <h2 className="text-2xl min-[800px]:text-28 7xl:text-33 font-neue-kaine-bold text-center text-[#2b303b]">
+          <h2 className="text-2xl min-[800px]:text-28 7xl:text-33 font-neue-kaine-bold  text-center text-[#2b303b]">
             {t("title")}
           </h2>
           <div className="mt-5 font-inter text-15 max-w-600 mx-auto text-[#576075]">
@@ -148,22 +148,13 @@ export const Pricing = () => {
 
         <div className="7xl:mt-10 grid grid-cols-1 4xl:grid-cols-2 7xl:grid-cols-4 gap-4 min-[810px]:gap-y-10 min-[810px]:gap-x-5 7xl:gap-2 cards-wrapper">
           {pricingPlans.map((plan, index) => (
-            <div 
-              key={index} 
-              className={`pricing-card h-full ${
-                plan.isPopular ? '-mt-8 4xl:-mt-12 7xl:-mt-16' : ''
-              }`}
-            >
+            <div key={index} className="pricing-card h-full">
               <Link
-                href="#"
-                className={`card-item p-6 pt-8 flex gap-4 flex-col bg-[#fafcfc] border border-[#e5eaea] rounded-2xl relative h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 ${
-                  plan.isPopular 
-                    ? 'shadow-xl ring-2 ring-blue-200/50 z-10 border-blue-200 bg-gradient-to-br from-blue-50/50 to-transparent' 
-                    : ''
-                }`}
+                href={"#"}
+                className="card-item p-6 pt-8 flex gap-4 flex-col bg-[#fafcfc] border border-[#e5eaea] rounded-2xl relative h-full"
               >
                 <div
-                  className="w-[168px] h-2 absolute top-0 left-1/2 -translate-x-1/2 rounded-b-xl"
+                  className="w-[168px] h-2 absolute top-0 left-1/2 -translate-x-1/2"
                   data-framer-name="top line"
                   style={{
                     backgroundColor: plan.topLineColor,
@@ -178,9 +169,9 @@ export const Pricing = () => {
                   </p>
                 </div>
                 <ul className="flex flex-col gap-1 flex-1">
-                  {plan.features.map((feature, fIndex) => (
-                    <li key={fIndex} className="center gap-2">
-                      <span className="w-5 h-5 center flex-shrink-0">{feature.icon}</span>
+                  {plan.features.map((feature, index) => (
+                    <li key={index} className="center gap-2">
+                      <span className="w-5 h-5 center">{feature.icon}</span>
                       <span className="text-13 text-[#2b303b] font-semibold">
                         {feature.title}
                       </span>
@@ -210,8 +201,8 @@ export const Pricing = () => {
             <Image
               src="/images/pricing/certificates.png"
               alt="Certificate"
-              width={450}
-              height={65}
+              width={376}
+              height={54}
             />
           </div>
           <div className="text-15 font-inter text-[#2b303b]">
