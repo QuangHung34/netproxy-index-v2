@@ -48,7 +48,7 @@ export const Contact = () => {
                 <PhoneIcon />
               </div>
               <Link
-                href="tel:+84327072120"
+                href="tel:+84974635535"
                 className="text-15 font-inter text-[#576075] hover:underline"
               >
                 {t("phone")}
