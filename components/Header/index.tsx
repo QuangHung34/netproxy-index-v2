@@ -22,7 +22,7 @@ export const Header = () => {
           <div className="grid grid-cols-[auto_1fr_auto] items-center">
             <Link
               href="/"
-              className="flex items-center gap-2 w-[174px] 4xl:w-fit h-auto aspect-[3.95455]"
+              className="flex items-center gap-2 w-[200px] 4xl:w-fit h-auto aspect-[3.95455]"
             >
               <Logo />
             </Link>
