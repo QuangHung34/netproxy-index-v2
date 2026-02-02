@@ -17,7 +17,7 @@ return (
 src={src}
 alt="Netproxy Logo"
 width={174}
-height={44}
+height={50}
 sizes="(min-width: 810px) 300.5px, 174px"
 className="w-[174px] h-[43.98px] 4xl:w-[300.5px] 4xl:h-[44px]"
 unoptimized={!hasError && !!logoLightUrl}
