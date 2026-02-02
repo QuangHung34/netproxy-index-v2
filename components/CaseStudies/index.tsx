@@ -58,7 +58,7 @@ export const CaseStudies = () => {
           <p className="text-13 text-primary text-center font-medium">
             TOP CASE
           </p>
-          <h3 className="text-2xl md:text-33 font-neue-kaine-bold  text-center text-[#2b303b]">
+          <h3 className="text-2xl md:text-33 font-neue-kaine-bold text-center text-[#2b303b]">
             {t("title")}
           </h3>
           <div className="mt-5 font-inter text-15 max-w-600 mx-auto text-[#576075]">
@@ -66,17 +66,21 @@ export const CaseStudies = () => {
           </div>
         </div>
 
-        {/* ✅ 4 cái 1 hàng, kích thước bằng nhau */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mt-10 w-full">
+        {/* ✅ Luôn 4 ô 1 hàng cả mobile + desktop */}
+        <div className="grid grid-cols-4 gap-2 mt-10 w-full">
           {caseStudies.map((study, index) => (
             <div
               key={study.titleKey}
-              className="center gap-2 pl-7 pr-6 h-12 md:h-[72px] border border-[#e3ecec] flex flex-col justify-center"
+              className="flex flex-col items-center justify-center gap-1 
+                         h-14 border border-[#e3ecec] p-2 md:p-4 
+                         md:h-[82px] md:gap-2"
             >
-              <div className="w-6 h-6 md:w-10 md:h-10 center flex-shrink-0">
+              <div className="w-5 h-5 md:w-10 md:h-10 flex-shrink-0 flex items-center justify-center">
                 {study.icon}
               </div>
-              <p className="text-xs font-ibm-plex-mono font-semibold uppercase text-[#2b303b] text-center mt-1 leading-tight">
+              <p className="text-xs font-ibm-plex-mono font-semibold uppercase 
+                           text-[#2b303b] text-center leading-tight 
+                           md:text-sm md:leading-none">
                 {t(study.titleKey)}
               </p>
             </div>
