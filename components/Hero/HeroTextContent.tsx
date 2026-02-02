@@ -130,10 +130,10 @@ export const HeroTextContent = () => {
             >
               <Button
                 size="lg"
-                className="get-started-button w-full h-14 px-4 4xl:px-8"
+                className="get-started-button w-full h-18 px-6 4xl:px-12 text-base"  // to hơn 30%
               >
-                {tCommon("getStarted")?.toUpperCase()}{" "}
-                <p className="w-5 h-5">
+                {tCommon("getStarted")?.toUpperCase()} 
+                <p className="w-6 h-6">
                   <CursorIcon />
                 </p>
               </Button>
@@ -143,7 +143,7 @@ export const HeroTextContent = () => {
               className="grow shrink-0 basis-0 max-w-[420px] 4xl:max-w-full"
             >
               <Button
-                className="w-full h-14 px-1 min-[420px]:px-4 7xl:px-8 py-0"
+                className="w-full h-18 px-6 4xl:px-12 py-3 text-base"  // to hơn 30%
                 variant={"secondary"}
               >
                 {t("viewPrice")}
