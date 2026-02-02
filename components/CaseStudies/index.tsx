@@ -66,13 +66,13 @@ export const CaseStudies = () => {
           </div>
         </div>
 
-        {/* ✅ 4 ô 1 hàng - mobile + desktop đều to hơn */}
-        <div className="grid grid-cols-4 gap-3 mt-10 w-full">
+        {/* ✅ Mobile: 2 cột | Tablet+: 4 cột */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mt-10 w-full">
           {caseStudies.map((study, index) => (
             <div
               key={study.titleKey}
               className="flex flex-col items-center justify-center gap-2 
-                         h-[70px] border border-[#e3ecec] p-3 md:p-4 md:h-[82px]"
+                         h-[80px] border border-[#e3ecec] p-3 md:p-4 md:h-[82px]"
             >
               <div className="w-7 h-7 md:w-10 md:h-10 flex-shrink-0 flex items-center justify-center">
                 {study.icon}
