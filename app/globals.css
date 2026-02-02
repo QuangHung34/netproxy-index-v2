@@ -351,13 +351,3 @@
     }
   }
 }
-@layer components {
-  .nav-label {
-    font-size: 16px; /* cỡ chữ bình thường */
-  }
-
-  .group:hover .nav-label {
-    font-size: 20px; /* ~ text-xl */
-  }
-}
-
