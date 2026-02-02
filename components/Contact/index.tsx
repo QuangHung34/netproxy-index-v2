@@ -24,10 +24,10 @@ export const Contact = () => {
           <div className="text-15 font-inter text-[#576075] mb-8 max-w-600">
             {t("description")}
             <Link
-              href="mailto:ketoan@upgo.io"
+              href="mailto:contact@speedproxy.store"
               className="text-15 font-inter text-primary block"
             >
-              ketoan@upgo.io
+              contact@speedproxy.store
             </Link>
           </div>
           <div className="text-18 text-21 font-neue-kaine-bold mb-2 text-[#2b303b]">
@@ -39,7 +39,7 @@ export const Contact = () => {
               href="mailto:ketoan@upgo.io"
               className="text-15 font-inter text-primary"
             >
-              ketoan@upgo.io
+              contact@speedproxy.store
             </Link>
           </p>
           <div className="flex flex-col gap-1">
