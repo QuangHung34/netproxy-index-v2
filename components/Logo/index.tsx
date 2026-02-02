@@ -17,10 +17,10 @@ const Logo = () => {
         src={src}
         alt="Netproxy Logo"
       
-        width={260}
+        width={300}
         height={66}
       
-        sizes="(min-width: 1280px) 260px, 220px"
+        sizes="(min-width: 1280px) 300px, 220px"
        
         className="w-[220px] h-auto 4xl:w-[260px]"
         unoptimized={!hasError && !!logoLightUrl}
