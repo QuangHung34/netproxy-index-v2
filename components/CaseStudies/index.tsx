@@ -66,21 +66,20 @@ export const CaseStudies = () => {
           </div>
         </div>
 
-        {/* ✅ Luôn 4 ô 1 hàng cả mobile + desktop */}
-        <div className="grid grid-cols-4 gap-2 mt-10 w-full">
+        {/* ✅ 4 ô 1 hàng - mobile + desktop đều to hơn */}
+        <div className="grid grid-cols-4 gap-3 mt-10 w-full">
           {caseStudies.map((study, index) => (
             <div
               key={study.titleKey}
-              className="flex flex-col items-center justify-center gap-1 
-                         h-14 border border-[#e3ecec] p-2 md:p-4 
-                         md:h-[82px] md:gap-2"
+              className="flex flex-col items-center justify-center gap-2 
+                         h-[70px] border border-[#e3ecec] p-3 md:p-4 md:h-[82px]"
             >
-              <div className="w-5 h-5 md:w-10 md:h-10 flex-shrink-0 flex items-center justify-center">
+              <div className="w-7 h-7 md:w-10 md:h-10 flex-shrink-0 flex items-center justify-center">
                 {study.icon}
               </div>
               <p className="text-xs font-ibm-plex-mono font-semibold uppercase 
                            text-[#2b303b] text-center leading-tight 
-                           md:text-sm md:leading-none">
+                           md:text-sm">
                 {t(study.titleKey)}
               </p>
             </div>
@@ -90,5 +89,3 @@ export const CaseStudies = () => {
     </section>
   );
 };
-
-
