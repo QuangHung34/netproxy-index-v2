@@ -59,7 +59,7 @@
   --shadow-secondary-btn: var(--shadow-secondary-btn);
   --breakpoint-4xl: 50.625rem; /* 810px - default is 896px*/
   --breakpoint-7xl: 75rem; /* 1200px - default is 1280px */
-  --container-960: 60rem; /* 960px */
+  --container-960: 70rem; /* 960px */
   --container-600: 600px;
   --text-13: var(--text-13);
   --text-21: var(--text-21);
