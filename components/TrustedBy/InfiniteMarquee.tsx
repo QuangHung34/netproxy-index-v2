@@ -1,4 +1,4 @@
-// GsapMarquee.tsx
+// GsapMarquee.tsx (full version - màu sắc đầy đủ từ đầu, không mờ khi hover)
 import React, {
   FC,
   ReactNode,
@@ -19,13 +19,12 @@ type GsapMarqueeProps = {
   className?: string;
   speed?: number; // px/s
   direction?: Direction; // "left" | "right"
-  gap?: number; // gap between *items* inside a segment
-  segmentGap?: number; // gap between *segment copies* (the seam)
-  hoverTimeScale?: number; // timeScale while hovering an item
+  gap?: number; // gap between items
+  segmentGap?: number; // gap between segment copies
+  hoverTimeScale?: number; // slow speed khi hover track
   pauseOnHoverTrack?: boolean;
-  // Thêm props mới
-  disableBlur?: boolean; // tắt blur hoàn toàn
-  itemScale?: number;    // scale logo to hơn (1.2 = to 20%)
+  disableBlur?: boolean;
+  itemScale?: number;
 } & Omit<HTMLAttributes<HTMLDivElement>, "children">;
 
 export const GsapMarquee: FC<GsapMarqueeProps> = ({
@@ -33,15 +32,15 @@ export const GsapMarquee: FC<GsapMarqueeProps> = ({
   className = "",
   speed = 60,
   direction = "left",
-  gap = 16,
-  segmentGap, // NEW
+  gap = 24,
+  segmentGap,
   hoverTimeScale = 0.35,
   pauseOnHoverTrack = false,
-  disableBlur = true,   // mặc định tắt blur
-  itemScale = 1.3,      // mặc định to hơn 30%
+  disableBlur = true,
+  itemScale = 1.3,
   ...rest
 }) => {
-  const segGap = segmentGap ?? gap; // default: same as item gap
+  const segGap = segmentGap ?? gap;
   const containerRef = useRef<HTMLDivElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
   const tlRef = useRef<gsap.core.Tween | null>(null);
@@ -67,28 +66,20 @@ export const GsapMarquee: FC<GsapMarqueeProps> = ({
     const firstWrap = wraps[0];
     if (!firstWrap) return;
 
-    // Width of ONE segment copy (content) — margin isn't included in width
     const segmentContentW = firstWrap.getBoundingClientRect().width;
-
     const containerW = container.getBoundingClientRect().width;
-
-    // Animation moves by one full segment + the seam gap
     const segmentWWithGap = segmentContentW + segGap;
 
-    // Ensure enough duplicates to cover > 2× container width
     const minNeeded = Math.max(
       2,
       Math.ceil((containerW * 2) / Math.max(1, segmentWWithGap))
     );
     if (minNeeded !== dupCount) {
       setDupCount(minNeeded);
-      return; // re-run after render updates the count
+      return;
     }
 
-    // Reset transform
     gsap.set(track, { x: 0 });
-
-    // Initial offset for right direction so it scrolls from right to left visually correct
     if (isRight) {
       gsap.set(track, { x: -segmentWWithGap });
     }
@@ -111,22 +102,26 @@ export const GsapMarquee: FC<GsapMarqueeProps> = ({
     });
   }, [destroyTimeline, dupCount, isRight, segGap]);
 
-  // Build one segment (items with inner gap)
+  // ✅ Màu sắc đầy đủ từ đầu + không mờ khi hover
   const segment = useMemo(() => {
     return (
       <div className="gm-segment" style={{ display: "inline-flex", gap }}>
         {React.Children.map(children, (child, idx) => (
           <div
             key={idx}
-            className={`gm-item 
-                       ${disableBlur ? 'filter-none' : ''}  // tắt blur
-                       hover:filter-none`}                  // hover cũng không blur
+            className="gm-item filter-none hover:filter-none"
             style={{ 
               display: "inline-flex", 
               alignItems: "center",
-              transform: `scale(${itemScale})`,  // logo to hơn
-              transformOrigin: "center center"
+              transform: `scale(${itemScale})`,
+              transformOrigin: "center center",
+              willChange: "transform",
+              // ✅ Luôn full màu sắc từ đầu
+              filter: "none !important",
+              imageRendering: "auto",
+              backfaceVisibility: "hidden"
             }}
+            // ✅ Chỉ slow marquee speed khi hover, KHÔNG đổi filter
             onMouseEnter={() => {
               if (!tlRef.current) return;
               gsap.to(tlRef.current, {
@@ -144,9 +139,8 @@ export const GsapMarquee: FC<GsapMarqueeProps> = ({
         ))}
       </div>
     );
-  }, [children, gap, hoverTimeScale, disableBlur, itemScale]);
+  }, [children, gap, hoverTimeScale, itemScale]);
 
-  // Render duplicates; add marginRight = segmentGap to each copy
   const segments = useMemo(() => {
     return new Array(dupCount).fill(null).map((_, i) => (
       <div
@@ -155,7 +149,7 @@ export const GsapMarquee: FC<GsapMarqueeProps> = ({
         style={{
           flex: "0 0 auto",
           display: "inline-block",
-          marginRight: segGap, // <-- seam gap here
+          marginRight: segGap,
         }}
       >
         {segment}
@@ -163,9 +157,8 @@ export const GsapMarquee: FC<GsapMarqueeProps> = ({
     ));
   }, [dupCount, segGap, segment]);
 
-  // Initial mount & resize handling
   useLayoutEffect(() => {
-    baseSpeedRef.current = speed; // base speed locked for duration math
+    baseSpeedRef.current = speed;
     setup();
 
     const container = containerRef.current;
@@ -185,10 +178,8 @@ export const GsapMarquee: FC<GsapMarqueeProps> = ({
       roRef.current?.disconnect();
       destroyTimeline();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setup, destroyTimeline, dupCount]);
 
-  // If parent changes `speed`, scale time without rebuilding (no snap)
   useEffect(() => {
     if (!tlRef.current || !Number.isFinite(speed) || speed <= 0) return;
     const ratio = speed / baseSpeedRef.current;
@@ -213,7 +204,7 @@ export const GsapMarquee: FC<GsapMarqueeProps> = ({
   return (
     <div
       ref={containerRef}
-      className={`gm-container ${className ?? ""}`}
+      className={`gm-container ${className}`}
       style={{ overflow: "hidden", width: "100%", position: "relative" }}
       {...rest}
     >
