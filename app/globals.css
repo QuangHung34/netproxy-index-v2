@@ -351,3 +351,18 @@
     }
   }
 }
+@layer base {
+  .gm-segment,
+  .gm-item,
+  .gm-item img,
+  .gm-item svg,
+  .gm-track * {
+    filter: none !important;
+    -webkit-filter: none !important;
+    backdrop-filter: none !important;
+    isolation: isolate;
+    image-rendering: auto !important;
+    contain: paint;
+  }
+}
+
