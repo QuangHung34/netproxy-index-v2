@@ -16,13 +16,12 @@ const Logo = () => {
       <Image
         src={src}
         alt="Netproxy Logo"
-      
-        width={300}
-        height={66}
-      
-        sizes="(min-width: 1280px) 300px, 220px"
-       
-        className="w-[220px] h-auto 4xl:w-[260px]"
+        // kích thước gốc để Next.js tính tỉ lệ
+        width={360}
+        height={92} // 174x44 ~ 4:1, nên 360x90/92
+        // responsive: mobile ~320px, màn to ~360px
+        sizes="(min-width: 1280px) 360px, 320px"
+        className="w-[320px] h-auto 4xl:w-[360px]"
         unoptimized={!hasError && !!logoLightUrl}
         onError={() => setHasError(true)}
       />
