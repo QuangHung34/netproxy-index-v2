@@ -201,8 +201,8 @@ export const Pricing = () => {
             <Image
               src="/images/pricing/certificates.png"
               alt="Certificate"
-              width={376}
-              height={54}
+              width={450}
+              height={65}
             />
           </div>
           <div className="text-15 font-inter text-[#2b303b]">
