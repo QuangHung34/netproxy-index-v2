@@ -69,7 +69,7 @@ export const Footer = async () => {
   return (
     <footer className="pt-20 pb-10 bg-[#f2f7f7] px-5 4xl:px-10">
       <div className="container flex flex-col 7xl:flex-row gap-10">
-        <div className="flex flex-col gap-30 7xl:max-w-[510px]">
+        <div className="flex flex-col gap-30 7xl:max-w-[530px]">
           <div>
             <FooterLogo />
           </div>
