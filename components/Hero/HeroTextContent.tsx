@@ -92,17 +92,17 @@ export const HeroTextContent = () => {
 
   const featureCards = [
     {
-      icon: <MessageIcon className="w-10 h-10 md:w-20 md:h-20" />,
+      icon: <MessageIcon className="w-10! h-10! md:w-20! md:h-20!" />,
       title: t("features.transparent.title"),
       description: t("features.transparent.description"),
     },
     {
-      icon: <BlueNetworkIcon className="w-10 h-10 md:w-20 md:h-20" />,
+      icon: <BlueNetworkIcon className="w-10! h-10! md:w-20! md:h-20!" />,
       title: t("features.noLogs.title"),
       description: t("features.noLogs.description"),
     },
     {
-      icon: <WifiIcon className="w-10 h-10 md:w-20 md:h-20" />,
+      icon: <WifiIcon className="w-10! h-10! md:w-20! md:h-20!" />,
       title: t("features.fastConnection.title"),
       description: t("features.fastConnection.description"),
     },
@@ -123,17 +123,17 @@ export const HeroTextContent = () => {
           </p>
         </div>
         {storefrontUrl && (
-          <div className="w-full 4xl:w-fit mx-auto flex-row center gap-4">
+          <div className="w-full 4xl:w-fit mx-auto flex-row center gap-4 md:gap-6">
             <Link
               href={storefrontUrl}
               className="grow shrink-0 basis-0 max-w-[420px] 4xl:max-w-full"
             >
               <Button
                 size="lg"
-                className="get-started-button w-full h-14 px-4 4xl:px-8"  // mobile như cũ
+                className="get-started-button w-full h-14 px-4 md:h-[58px] md:px-6 4xl:h-[60px] 4xl:px-10"
               >
-                {tCommon("getStarted")?.toUpperCase()} 
-                <p className="w-5 h-5">
+                {tCommon("getStarted")?.toUpperCase()}{" "}
+                <p className="w-5 h-5 md:w-6 md:h-6">
                   <CursorIcon />
                 </p>
               </Button>
@@ -143,7 +143,7 @@ export const HeroTextContent = () => {
               className="grow shrink-0 basis-0 max-w-[420px] 4xl:max-w-full"
             >
               <Button
-                className="w-full h-14 px-1 min-[420px]:px-4 7xl:px-8 py-0"  // mobile như cũ
+                className="w-full h-14 px-1 min-[420px]:px-4 md:h-[58px] md:px-3 4xl:h-[60px] 4xl:px-5 py-0"
                 variant={"secondary"}
               >
                 {t("viewPrice")}
@@ -153,25 +153,26 @@ export const HeroTextContent = () => {
         )}
       </div>
 
-      <div className="flex flex-col gap-4 md:flex-row md:gap-6 4xl:gap-8 7xl:gap-8 z-20">
+      <div className="flex flex-col 4xl:flex-row gap-4 7xl:gap-8 z-20">
         {featureCards.map((card) => (
           <div
             key={card.title}
-            className="bg-[#fafcfc] rounded-2xl pt-4 px-4 pb-4 md:pb-8 
-                       md:pt-6 md:px-6 flex-1 self-stretch relative 
-                       flex flex-col md:flex-row 4xl:flex-col gap-3 md:gap-4 
-                       items-center md:items-start 4xl:items-center"
+            className="bg-[#fafcfc] rounded-2xl pt-4 4xl:px-6 4xl:pt-16 px-4 7xl:px-8 pb-4 md:pb-8 flex-1 self-stretch relative flex flex-row 4xl:flex-col gap-5 items-center"
           >
-            <div className="w-12 h-12 md:w-16 md:h-16 flex-shrink-0 center justify-center relative -top-2 md:-top-3">
+            <div className="w-10 h-10 4xl:w-20 4xl:h-20 relative 4xl:absolute 4xl:-top-[35px] 4xl:left-1/2 4xl:-translate-x-1/2 center justify-center">
               {card.icon}
             </div>
-            <div className="text-center md:text-left 4xl:text-center">
-              <h3 className="text-[16px] md:text-[18px] 4xl:text-[20px] font-neue-kaine-bold text-[#2b303b]">
-                {card.title}
-              </h3>
-              <p className="text-15 leading-[170%] text-[#576075] mt-1 md:mt-2">
-                {card.description}
-              </p>
+            <div>
+              <div className="whitespace-pre-wrap [word-break:break-word] [word-wrap:break-word] flex-none w-full h-auto relative flex flex-col justify-start outline-none">
+                <h3 className="text-[18px] leading-[140%] 4xl:text-[20px] font-neue-kaine-bold text-left 4xl:text-center text-[#2b303b]">
+                  {card.title}
+                </h3>
+              </div>
+              <div className="whitespace-pre-wrap [word-break:break-word] [word-wrap:break-word] flex-none w-full h-auto relative flex flex-col justify-start outline-none">
+                <p className="text-15 leading-[170%] text-[#576075] text-left 4xl:text-center mt-2">
+                  {card.description}
+                </p>
+              </div>
             </div>
           </div>
         ))}
