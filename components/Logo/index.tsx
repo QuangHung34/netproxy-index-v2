@@ -19,7 +19,7 @@ const Logo = () => {
         width={174}
         height={44}
         sizes="(min-width: 810px) 200.5px, 174px"
-        className="w-[174px] h-[43.98px] 4xl:w-[134.5px] 4xl:h-[44px]"
+        className="w-[174px] h-[43.98px] 4xl:w-[200.5px] 4xl:h-[44px]"
         unoptimized={!hasError && !!logoLightUrl}
         onError={() => setHasError(true)}
       />
