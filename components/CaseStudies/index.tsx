@@ -66,14 +66,17 @@ export const CaseStudies = () => {
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-2 mt-10">
-          {caseStudies.map((study) => (
+        {/* ✅ 4 cái 1 hàng, kích thước bằng nhau */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mt-10 w-full">
+          {caseStudies.map((study, index) => (
             <div
-              className="center gap-2 pl-7 pr-6 h-12 md:h-[72px] border border-[#e3ecec]"
               key={study.titleKey}
+              className="center gap-2 pl-7 pr-6 h-12 md:h-[72px] border border-[#e3ecec] flex flex-col justify-center"
             >
-              <div className="w-6 h-6 md:w-10 md:h-10 center">{study.icon}</div>
-              <p className="text-xs font-ibm-plex-mono font-semibold uppercase text-[#2b303b]">
+              <div className="w-6 h-6 md:w-10 md:h-10 center flex-shrink-0">
+                {study.icon}
+              </div>
+              <p className="text-xs font-ibm-plex-mono font-semibold uppercase text-[#2b303b] text-center mt-1 leading-tight">
                 {t(study.titleKey)}
               </p>
             </div>
