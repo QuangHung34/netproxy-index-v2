@@ -15,7 +15,7 @@ export const FooterLogo = () => {
     <Image
       src={src}
       alt="Net proxy Logo"
-      width={200}
+      width={300}
       height={60}
       unoptimized={!hasError && !!logoLightUrl}
       onError={() => setHasError(true)}
