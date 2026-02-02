@@ -123,17 +123,20 @@ export const HeroTextContent = () => {
           </p>
         </div>
         {storefrontUrl && (
-          <div className="w-full 4xl:w-fit mx-auto flex-row center gap-4 md:gap-6">
+          <div className="w-full 4xl:w-fit mx-auto flex-row center gap-4 md:gap-6 lg:gap-8">
             <Link
               href={storefrontUrl}
               className="grow shrink-0 basis-0 max-w-[420px] 4xl:max-w-full"
             >
               <Button
                 size="lg"
-                className="get-started-button w-full h-14 px-4 md:h-[58px] md:px-6 4xl:h-[60px] 4xl:px-10"
+                className="get-started-button w-full h-14 px-4 
+                           md:h-[58px] md:px-6 
+                           lg:h-[65px] lg:px-8 
+                           4xl:h-[72px] 4xl:px-12"
               >
                 {tCommon("getStarted")?.toUpperCase()}{" "}
-                <p className="w-5 h-5 md:w-6 md:h-6">
+                <p className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7">
                   <CursorIcon />
                 </p>
               </Button>
@@ -143,7 +146,10 @@ export const HeroTextContent = () => {
               className="grow shrink-0 basis-0 max-w-[420px] 4xl:max-w-full"
             >
               <Button
-                className="w-full h-14 px-1 min-[420px]:px-4 md:h-[58px] md:px-3 4xl:h-[60px] 4xl:px-5 py-0"
+                className="w-full h-14 px-1 min-[420px]:px-4 
+                           md:h-[58px] md:px-3 
+                           lg:h-[65px] lg:px-5 
+                           4xl:h-[72px] 4xl:px-7 py-0"
                 variant={"secondary"}
               >
                 {t("viewPrice")}
